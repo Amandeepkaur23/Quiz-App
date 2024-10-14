@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardBackgroundColor="#BABAE4"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="8dp"
+    android:layout_margin="5dp"
+    android:layout_marginHorizontal="5dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/question"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:text="Here is the question?"
+            android:textStyle="normal"
+            android:textColor="@color/black"
+            android:textSize="25sp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/black"
+            android:layout_below="@+id/question"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:id="@+id/optionA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Option A"
+            android:layout_below="@+id/question"
+            android:textSize="25sp"
+            android:textColor="@color/black"
+            android:textStyle="normal"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/optionB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Option B"
+            android:layout_below="@+id/optionA"
+            android:textSize="25sp"
+            android:textColor="@color/black"
+            android:textStyle="normal"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:id="@+id/optionC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Option C"
+            android:layout_below="@+id/optionB"
+            android:textSize="25sp"
+            android:textColor="@color/black"
+            android:textStyle="normal"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:id="@+id/optionD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Option D"
+            android:layout_below="@+id/optionC"
+            android:textSize="25sp"
+            android:textColor="@color/black"
+            android:textStyle="normal"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginTop="5dp"/>
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
