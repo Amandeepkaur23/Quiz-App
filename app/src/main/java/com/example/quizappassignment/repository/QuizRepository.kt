@@ -28,6 +28,17 @@ class QuizRepository @Inject constructor(
             try {
                 val result = quizApi.getQuiz()
                 if (result.isSuccessful && result.body() != null) {
+
+                    val quizList = result.body()!!.results
+                    quizList.forEach { quiz ->
+                        // Check if the question already exists in the database
+                        val existingQuiz = quizDao.getQuizByQuestion(quiz.question)
+                        if (existingQuiz == null) {
+                            // Insert only if the question does not exist
+                            quizDao.insertQuiz(listOf(quiz))
+                        }
+                    }
+
                     _quiz.postValue(NetworkResult.Success(result.body()!!))
                     Log.d("QuizRepository", "Quiz data fetched successfully: ${result.body()}")
                     quizDao.insertQuiz(result.body()!!.results)
@@ -44,7 +55,9 @@ class QuizRepository @Inject constructor(
             try{
                 withContext(Dispatchers.IO){
                     val result = quizDao.getAllQuizzes()
-                    val questions = Questions(0, result)
+
+                    val limitedQuestions = result.take(20)
+                    val questions = Questions(0, limitedQuestions)
                     _quiz.postValue(NetworkResult.Success(questions))
                     Log.d("QuizRepository", "Quiz data fetched successfully: $questions")
                 }
