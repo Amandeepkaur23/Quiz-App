@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.quizappassignment.databinding.FragmentResultBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -37,6 +38,10 @@ class ResultFragment : Fragment() {
         // Retrieve and display the high score
         val highScore = sharedPreferences.getInt("HIGH_SCORE", 0)
         binding.txtHighScore.text = "High Score: $highScore"
+
+        binding.btnPlayAgain.setOnClickListener {
+            findNavController().navigate(R.id.action_resultFragment_to_homeFragment)
+        }
         return binding.root
     }
 

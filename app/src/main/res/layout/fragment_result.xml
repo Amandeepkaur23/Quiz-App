@@ -26,4 +26,16 @@
         android:textSize="40sp"
         android:textStyle="bold"/>
 
+    <Button
+        android:id="@+id/btnPlayAgain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20dp"
+        android:text="Play Again"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:backgroundTint="@color/black"/>
+
 </RelativeLayout>
