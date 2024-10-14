@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeFragment"
-    android:layout_centerInParent="true">
+    tools:context=".HomeFragment">
 
     <TextView
         android:id="@+id/appName"
@@ -24,11 +23,10 @@
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_below="@+id/appName"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="82dp"
         android:contentDescription="Just an image"
-        android:src="@drawable/ic_launcher_background"
-        />
+        android:src="@drawable/ic_launcher_background" />
 
     <TextView
         android:id="@+id/start"

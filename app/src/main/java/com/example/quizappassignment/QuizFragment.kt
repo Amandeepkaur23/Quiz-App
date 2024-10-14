@@ -32,6 +32,8 @@ class QuizFragment : Fragment() {
 
     private lateinit var sharedPreferences: SharedPreferences
 
+    private var timer: CountDownTimer? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -55,10 +57,10 @@ class QuizFragment : Fragment() {
         quizViewModel.fetchQuiz()
 
         //Set timer
-        val timer = object : CountDownTimer(60000, 1000) {  // 1 minutes countdown with 1 second interval
+        timer = object : CountDownTimer(60000, 1000) {  // 1 minutes countdown with 1 second interval
             override fun onTick(millisUntilFinished: Long) {
                 // Update the UI with the remaining time
-                binding.txtTimer.text = "Minutes remaining: ${millisUntilFinished / 1000} mins"
+                binding.txtTimer.text = "Time Left: ${millisUntilFinished / 1000} secs"
             }
 
             override fun onFinish() {
@@ -67,6 +69,12 @@ class QuizFragment : Fragment() {
                 val action = QuizFragmentDirections.actionQuizFragmentToResultFragment(score)
                 findNavController().navigate(action)
             }
+        }
+
+        binding.btnSubmit.setOnClickListener {
+            saveHighScore(score)  // Save the high score before navigating to the result screen
+            val action = QuizFragmentDirections.actionQuizFragmentToResultFragment(score)
+            findNavController().navigate(action)
         }
 
         quizViewModel.quiz.observe(viewLifecycleOwner, Observer {
@@ -79,7 +87,7 @@ class QuizFragment : Fragment() {
                 is NetworkResult.Success -> {
                     quizAdapter.updateData(it.data!!.results)
                     binding.txtLoading.isVisible = false
-                    timer.start()  // Start the timer
+                    timer?.start()  // Start the timer
                 }
 
                 is NetworkResult.Loading -> {
@@ -106,6 +114,7 @@ class QuizFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        timer?.cancel()
     }
 
 }

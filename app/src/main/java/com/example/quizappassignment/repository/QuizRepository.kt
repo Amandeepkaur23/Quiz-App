@@ -9,6 +9,8 @@ import com.example.quizappassignment.db.QuizDao
 import com.example.quizappassignment.model.Questions
 import com.example.quizappassignment.util.NetworkResult
 import com.example.quizappassignment.util.NetworkUtil
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class QuizRepository @Inject constructor(
@@ -40,11 +42,12 @@ class QuizRepository @Inject constructor(
             }
         } else {
             try{
-
-                val result = quizDao.getAllQuizzes()
-                val questions = Questions(0, result)
-                _quiz.postValue(NetworkResult.Success(questions))
-                Log.d("QuizRepository", "Quiz data fetched successfully: $questions")
+                withContext(Dispatchers.IO){
+                    val result = quizDao.getAllQuizzes()
+                    val questions = Questions(0, result)
+                    _quiz.postValue(NetworkResult.Success(questions))
+                    Log.d("QuizRepository", "Quiz data fetched successfully: $questions")
+                }
             }
             catch (e:Exception){
                 Log.d("QuizRepository", "Error fetching quiz: ${e.message}")

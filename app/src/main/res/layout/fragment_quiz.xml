@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".QuizFragment">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <TextView
         android:id="@+id/txtTimer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Timer: 10min"
+        android:text="Timer: 1 min"
         android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -40,4 +44,18 @@
         tools:listitem="@layout/quiz_itemlist"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:textStyle="bold"
+        android:textSize="22sp"
+        android:layout_alignParentEnd="true"
+        android:backgroundTint="@color/black"
+        android:layout_margin="10dp"
+        android:layout_below="@id/quizRv"/>
+
+    </RelativeLayout>
+
+</ScrollView>
